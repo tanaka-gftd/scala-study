@@ -36,14 +36,27 @@ object SimpleSearch extends App {
   def isMatch(textPart: Seq[Char], pattern: Seq[Char]): Boolean = {
 
     //isMatch変数のデフォルトはtrueにしておく
-    var isMatch = true
+    var isMatchFlag = true  //理解しやすいよう、変数名変更
 
+    //レッスン2-4中級問題を解くために、コメントアウト
+    /*
     //切り出した文字列と、探したい文字列が一致するかどうかを、1文字ずつループ処理でチェック
     //"文字列の長さが違う" or "文字が一致しない" isMatch変数にfalseを代入
     for(i <- 0 to pattern.length - 1) {
       if(textPart.length < pattern.length || textPart(i) != pattern(i)) isMatch = false
     }
-    isMatch  //処理結果(中身は真偽値)を返す
+    */
+
+    //思いつかなかったので、解説を参照しました
+    //ループを途中で止めるために、whileの条件式として一致したかどうかのフラグを格納した変数(真偽値)を含めるのがポイント
+    var i = 0
+    while(isMatchFlag && i <= pattern.length - 1){  //isMatchFlagを条件に加えることで、falseになった時点でループを終了できる
+      //「iの中身が"textPart.length-1"よりも大きい」「textPart(i) とpattern(i)が一致しない」、どちらか一方でも成立すれば、isMatchFlagにfalse
+      //if ( i > textPart.length - 1 || textPart(i) != pattern(i)) isMatchFlag = false //解説だとこの条件だけど、下の方が理解しやすいので書き換え
+      if ( textPart.length < pattern.length || textPart(i) != pattern(i)) isMatchFlag = false  
+      i = i + 1
+    }
+    isMatchFlag  //処理結果(中身は真偽値)を返す
   }
   println(s"出現場所: ${result}")
 }
