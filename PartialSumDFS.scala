@@ -61,7 +61,7 @@ object partialSumDFS extends App {
     定数の宣言と、その定数に代入する形で関数を呼び出す
     val isMatch
     val result 
-    ↓ 分割代入で、定数宣言を1行に書き換え(* 分割代入では、すでに存在する変数への再代入はできない)
+    ↓ 分割代入で、定数宣言を1行に書き換え(* 分割代入では、すでに中身が存在するvar変数への再代入はできない)
   */
   val (isMatch, result) = isMatchAndResult(0, Seq())
 
